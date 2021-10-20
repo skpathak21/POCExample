@@ -1,0 +1,82 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Values",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44353 //44337
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/product1",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+     
+
+
+    },
+    {
+      "DownstreamPathTemplate": "/api/weatherforecast/",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44367 //44367
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/product2",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowScopes": []
+      },
+      "RateLimitOptions": {
+        "ClientWhitelist": [],
+        "EnableRateLimiting": true,
+        "Period": "5s",
+        "PeriodTimespan": 1,
+        "Limit": "1"
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/weatherforecast/addweather",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44367 //44367
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/product2/addweather",
+      "UpstreamHttpMethod": [ "GET", "DELETE", "POST" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/weatherforecast/updateweather",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44367 //44367
+        }
+      ],
+      "UpstreamPathTemplate": "/gateway/product2/updateweather",
+      "UpstreamHttpMethod": [ "PUT" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:44348",
+    "RateLimitOptions": {
+      "ClientWhitelist": [
+
+      ],
+      "EnableRateLimiting": true,
+      "Period": "5s",
+      "PeriodTimespan": 1,
+      "Limit": 1
+    }
+  }
+}
